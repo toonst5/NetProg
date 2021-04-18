@@ -1,0 +1,11 @@
+main.o
+moc_nzmqt.o
+moc_SampleBase.o
+moc_Subscriber.o
+moc_Publisher.o
+moc_Sink.o
+moc_Worker.o
+moc_Ventilator.o
+moc_Requester.o
+moc_Replier.o
+moc_NzmqtApp.o
