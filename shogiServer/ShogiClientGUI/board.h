@@ -9,6 +9,7 @@
 #include "footsoldier.h"
 #include "flyingchariot.h"
 #include "connect.h"
+#include "connectt.h"
 
 namespace Shogi
 {

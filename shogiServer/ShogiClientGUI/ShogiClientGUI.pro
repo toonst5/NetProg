@@ -19,6 +19,7 @@ SOURCES += \
     board.cpp \
     button.cpp \
     connect.cpp \
+    connectt.cpp \
     flyingchariot.cpp \
     footsoldier.cpp \
     game.cpp \
@@ -32,6 +33,7 @@ HEADERS += \
     board.h \
     button.h \
     connect.h \
+    connectt.h \
     flyingchariot.h \
     footsoldier.h \
     game.h \

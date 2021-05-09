@@ -12,8 +12,8 @@ void Shogi::connect::make()
 
     this->sub = zmq_socket (context, ZMQ_SUB);
     this->pusher = zmq_socket( context, ZMQ_PUSH );
-    zmq_connect( pusher, "tcp://benternet.pxl-ea-ict.be:24041" );
-    zmq_connect( sub, "tcp://benternet.pxl-ea-ict.be:24042" );
+    zmq_connect( pusher, "tcp://benternet.backup.pxl-ea-ict.be:24041" );
+    zmq_connect( sub, "tcp://benternet.backup.pxl-ea-ict.be:24042" );
 
     this->reset();
 }

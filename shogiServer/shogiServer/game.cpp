@@ -34,6 +34,7 @@ void Shogi::game::start()
     }
 
     s->send();
+    printf("send");
 
     s->reset();
 

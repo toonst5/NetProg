@@ -24,6 +24,7 @@ private:
 public:
 
     pion(QGraphicsItem* parent=NULL);
+    ~pion() {}
 
     void setPointer(game* W){this->P=W;}
     game* getPointer(){return this->P;}

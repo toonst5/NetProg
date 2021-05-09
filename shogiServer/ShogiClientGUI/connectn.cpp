@@ -1,13 +1,13 @@
-#include "connect.h"
+#include "connectn.h"
 
-Shogi::connect::connect()
+Shogi::connectn::connectn()
 {
 
 }
 
-void Shogi::connect::make()
+void Shogi::connectn::make()
 {
-    this->context = zmq_ctx_new();
+    nzmqt::ZMQContext *context = nzmqt::createDefaultContext( &a );
     char buffer [500];
 
     this->sub = zmq_socket (context, ZMQ_SUB);
@@ -18,13 +18,13 @@ void Shogi::connect::make()
     this->reset();
 }
 
-void Shogi::connect::send()
+void Shogi::connectn::send()
 {
 
     zmq_send( pusher, buffer,300 , 0 );
 }
 
-void Shogi::connect::get()
+void Shogi::connectn::get()
 {
     int i = 0;
     int t = 0;
@@ -51,7 +51,7 @@ void Shogi::connect::get()
 
 }
 
-void Shogi::connect::reset()
+void Shogi::connectn::reset()
 {
     for(int i=0; i<500;i++)
     {

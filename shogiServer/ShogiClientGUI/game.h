@@ -21,6 +21,7 @@ private:
     char loca [10]="shogi>CL>";
 
     class connect* c;
+    class connectT* ct;
 
 public:
     game(QWidget* parent=NULL);

@@ -28,6 +28,9 @@ void Shogi::game::start()
     c = new class connect();
     c->make();
 
+    ct = new connectT();
+    ct->start();
+    ct->wait();
 
     for(int i=0;i<16;i++)
     {
