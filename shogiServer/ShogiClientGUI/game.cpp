@@ -28,9 +28,9 @@ void Shogi::game::start()
     c = new class connect();
     c->make();
 
-    ct = new connectT();
+    /*ct = new connectT();
     ct->start();
-    ct->wait();
+    ct->wait();*/
 
     for(int i=0;i<16;i++)
     {
@@ -202,16 +202,44 @@ void Shogi::game::placeCard(pion *pionToReplace)
 
     c->reset();
 
+
+
     for(int i=0;i<167/*Board->getPionen().count()*/;i++)
     {
-        if(i<7)
+        if(i<9)
         {
             c->buffer[i]=loca[i];
+        }else if(i==9)
+        {
+             c->buffer[i]='[';
+        }else if(i<166)
+        {
+            c->buffer[i]=(char)c->bufferi[i-10]+(char)'0';
         }else
         {
-            c->buffer[i]=(char)(Board->getPionen().takeAt(i-7)->getPionID()+(int)'0');
+            c->buffer[i]=']';
         }
     }
+
+    Board->replacePionen(400,20);
+
+    for(int i=0;i<200;i++)
+    {
+        if(i<8)
+        {
+            c->buffer[i]=loca[i];
+        }else if(i==8)
+        {
+            c->buffer[i]='[';
+        }else if(i<199)
+        {
+            c->buffer[i]=(char)c->bufferi[i-10]+(char)'0';
+        }else
+        {
+            c->buffer[i]=']';
+        }
+    }
+
 
     c->send();
 

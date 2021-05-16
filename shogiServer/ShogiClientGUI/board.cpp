@@ -28,11 +28,11 @@ void Shogi::board::placePionen(int x, int y/*, int cols, int rows*/)
     double xt=-4.5;
     int yt=0;
 
-    /*while(Pionen.count()>1)
+    while(Pionen.count()>1)
     {
     Pionen.last()->~pion();
     Pionen.removeLast();
-    }*/
+    }
 
     while(c->bufferi[i] != 8)
     {
@@ -100,6 +100,32 @@ void Shogi::board::replacePionen(int x, int y)
     double xt=-4.5;
     int yt=0;
 
+    int xp=0;
+    int yp=0;
+    int pp=0;
+    int c=1;
+
+    while(c)
+    {
+        xp = Pionen[i]->x();
+        yp = Pionen[i]->x();
+
+        if(xp<0)
+        {
+            pp=(xp/SHIFT-x+4.5)+(yp/SHIFT-y)*3;
+        }else if(xp<9*SHIFT)
+        {
+            pp=(xp/SHIFT-x)+(yp/SHIFT-y)*9;
+        }else
+        {
+            pp=(xp/SHIFT-x-10.5)+(yp/SHIFT-y-1)*3;
+        }
+        if(Pionen[i]==Pionen.last())
+        {
+
+        }
+    }
+    /*
     while(c->bufferi[i] != 8)
     {
         if(i < 40)
@@ -156,7 +182,7 @@ void Shogi::board::replacePionen(int x, int y)
         }
         i++;
         xt++;
-    }
+    }*/
 }
 
 void Shogi::board::creatPionColm(int x, int y, int numPionen, QString player, QString soort, int PionID)

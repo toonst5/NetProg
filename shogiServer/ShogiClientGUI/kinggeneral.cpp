@@ -18,6 +18,6 @@ bool Shogi::kingGeneral::posibleMove(pion *pionToReplace, int SHIFT)
 
 Shogi::kingGeneral::~kingGeneral()
 {
-
+    Text->~QGraphicsTextItem();
 }
 

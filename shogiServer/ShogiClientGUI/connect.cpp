@@ -29,7 +29,7 @@ void Shogi::connect::get()
     int i = 0;
     int t = 0;
     int v = 0;
-    zmq_setsockopt(this->sub, ZMQ_SUBSCRIBE,"shogi>", 6);
+    zmq_setsockopt(this->sub, ZMQ_SUBSCRIBE,"shogi>S>", 8);
     printf("waiting");
     zmq_recv (sub, buffer, 500, 0);
 

@@ -24,12 +24,18 @@ void Shogi::game::start()
 
     for(int i=0;i<200;i++)
     {
-        if(i<6)
+        if(i<8)
         {
             s->buffer[i]=loca[i];
+        }else if(i==8)
+        {
+             s->buffer[i]='[';
+        }else if(i<199)
+        {
+            s->buffer[i]=(char)bufferi[i-9]+(char)'0';
         }else
         {
-            s->buffer[i]=(char)bufferi[i-6]+(char)'0';
+            s->buffer[i]=']';
         }
     }
 
@@ -38,23 +44,32 @@ void Shogi::game::start()
 
     s->reset();
 
+    while(1)
+    {
     s->get();
 
-    for(int t=0;t<200;t++)
+    for(int i=0;i<200;i++)
     {
-        if(t<6)
+        if(i<8)
         {
-            s->buffer[t]=loca[t];
+            s->buffer[i]=loca[i];
+        }else if(i==8)
+        {
+             s->buffer[i]='[';
+        }else if(i<199)
+        {
+            s->buffer[i]=(char)bufferi[i-9]+(char)'0';
         }else
         {
-            s->buffer[t]=(char)bufferi[t-5]+(char)'0';
+            s->buffer[i]=']';
         }
     }
-    s->buffer[200]=']';
 
     s->send();
 
     s->reset();
+
+    }
 
     s->breake();
 }

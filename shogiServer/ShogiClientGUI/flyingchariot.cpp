@@ -20,6 +20,6 @@ bool Shogi::flyingChariot::posibleMove(pion *pionToReplace, int SHIFT)
 
 Shogi::flyingChariot::~flyingChariot()
 {
-
+    Text->~QGraphicsTextItem();
 }
 

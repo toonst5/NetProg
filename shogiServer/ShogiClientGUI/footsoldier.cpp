@@ -28,6 +28,6 @@ bool Shogi::FootSoldier::posibleMove(pion *pionToReplace, int SHIFT)
 
 Shogi::FootSoldier::~FootSoldier()
 {
-
+    Text->~QGraphicsTextItem();
 }
 
