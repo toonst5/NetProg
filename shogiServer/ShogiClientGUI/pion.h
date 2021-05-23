@@ -17,8 +17,8 @@ private:
     bool yard;
 
     game* P;
-    short X;
-    short Y;
+    int X;
+    int Y;
     int PionID;
 
 public:

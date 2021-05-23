@@ -51,7 +51,7 @@ void Shogi::game::start()
     Board = new board(this);
     Board->setConect(c);
     c->get();
-    Board->placePionen(400,20/*,9,9*/);
+    Board->placePionen(0,20/*,9,9*/);
 }
 
 void Shogi::game::displayMainMenu()
@@ -164,7 +164,7 @@ void Shogi::game::pickUpCard(pion *card)
 
 void Shogi::game::placeCard(pion *pionToReplace)
 {
-
+    int i = 0;
     cardToPlace->setPos(pionToReplace->pos());
     cardToPlace->setXText(pionToReplace->x()+25);
     cardToPlace->setYText(pionToReplace->y()+30);
@@ -173,23 +173,46 @@ void Shogi::game::placeCard(pion *pionToReplace)
     if(cardToPlace->getYard()&&cardToPlace->getOwner()==QString("PLAYER1"))
     {
         pionToReplace->setPos(originalPos);
+        pionToReplace->setPionID(9);
         pionToReplace->setOwner(QString("GRAVE"));
 
         cardToPlace->setYard(false);
     }else if(cardToPlace->getYard()&&cardToPlace->getOwner()==QString("PLAYER2"))
     {
         pionToReplace->setPos(originalPos);
+        pionToReplace->setPionID(9);
         pionToReplace->setOwner(QString("GRAVE"));
 
         cardToPlace->setYard(false);
     }else if((pionToReplace->getOwner()==QString("PLAYER2")&&cardToPlace->getOwner()==QString("PLAYER1")))
     {
         pionToReplace->setOwner(QString("PLAYER1"));
+        pionToReplace->setPionID(pionToReplace->getPionID()+3);
         pionToReplace->setYard(true);
+        while(i<40&&Board->getPionen()[i]->getPionID()!=0)
+        {
+            i++;
+        }
+        cardToPlace->setPos(pionToReplace->pos());
+        originalPos=pionToReplace->pos();
+        pionToReplace->setPos(Board->getPionen()[i]->pos());
+        Board->getPionen()[i]->setPos(originalPos);
+        Board->getPionen()[i]->setPionID(9);
     }else if((pionToReplace->getOwner()==QString("PLAYER1")&&cardToPlace->getOwner()==QString("PLAYER2")))
     {
         pionToReplace->setOwner(QString("PLAYER2"));
+        pionToReplace->setPionID(pionToReplace->getPionID()-3);
         pionToReplace->setYard(true);
+        i=122;
+        while(i<162&&Board->getPionen()[i]->getPionID()!=0)
+        {
+            i++;
+        }
+        cardToPlace->setPos(pionToReplace->pos());
+        originalPos=pionToReplace->pos();
+        pionToReplace->setPos(Board->getPionen()[i]->pos());
+        Board->getPionen()[i]->setPos(originalPos);
+        Board->getPionen()[i]->setPionID(9);
     }else
     {
         pionToReplace->setPos(originalPos);
@@ -200,40 +223,23 @@ void Shogi::game::placeCard(pion *pionToReplace)
 
     cardToPlace = nullptr;
 
+
+
     c->reset();
 
-
-
-    for(int i=0;i<167/*Board->getPionen().count()*/;i++)
-    {
-        if(i<9)
-        {
-            c->buffer[i]=loca[i];
-        }else if(i==9)
-        {
-             c->buffer[i]='[';
-        }else if(i<166)
-        {
-            c->buffer[i]=(char)c->bufferi[i-10]+(char)'0';
-        }else
-        {
-            c->buffer[i]=']';
-        }
-    }
-
-    Board->replacePionen(400,20);
+    Board->replacePionen(0,17);
 
     for(int i=0;i<200;i++)
     {
-        if(i<8)
+        if(i<10)
         {
             c->buffer[i]=loca[i];
-        }else if(i==8)
+        }else if(i==10)
         {
             c->buffer[i]='[';
         }else if(i<199)
         {
-            c->buffer[i]=(char)c->bufferi[i-10]+(char)'0';
+            c->buffer[i]=(char)c->bufferi[i-11]+(char)'0';
         }else
         {
             c->buffer[i]=']';
@@ -248,7 +254,7 @@ void Shogi::game::placeCard(pion *pionToReplace)
     c->reset();
     c->get();
 
-    Board->placePionen(400,20);
+    Board->placePionen(0,20);
 
 }
 

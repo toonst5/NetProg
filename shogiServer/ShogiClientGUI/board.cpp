@@ -25,7 +25,7 @@ QList<Shogi::pion *> Shogi::board::getPionen()
 void Shogi::board::placePionen(int x, int y/*, int cols, int rows*/)
 {
     int i = 0;
-    double xt=-4.5;
+    double xt=0;
     int yt=0;
 
     while(Pionen.count()>1)
@@ -38,23 +38,23 @@ void Shogi::board::placePionen(int x, int y/*, int cols, int rows*/)
     {
         if(i < 40)
         {
-            if(xt>-1)
-            {
-                xt=-4.5;
-                yt++;
-            }
-        }else if(i<121)
-        {
-            if(xt>8)
+            if(xt>2.5)
             {
                 xt=0;
                 yt++;
             }
+        }else if(i<121)
+        {
+            if(xt>12)
+            {
+                xt=4;
+                yt++;
+            }
         }else
         {
-            if(xt>13)
+            if(xt>17)
             {
-                xt=10.5;
+                xt=14.5;
                 yt++;
             }
         }
@@ -62,11 +62,11 @@ void Shogi::board::placePionen(int x, int y/*, int cols, int rows*/)
         if(i==40)
         {
             yt=0;
-            xt=0;
+            xt=4;
         }else if(i==121)
         {
             yt=1;
-            xt=10.5;
+            xt=14.5;
         }
 
         if(c->bufferi[i] == 0)
@@ -84,9 +84,15 @@ void Shogi::board::placePionen(int x, int y/*, int cols, int rows*/)
         }else if(c->bufferi[i] == 4)
         {
             creatPionColm(x+xt*SHIFT,y+yt*SHIFT,1,QString("PLAYER1"),QString("PION"),4);
+        }else if(c->bufferi[i] == 5)
+        {
+            creatPionColm(x+xt*SHIFT,y+yt*SHIFT,1,QString("PLAYER1"),QString("KING"),5);
+        }else if(c->bufferi[i] == 6)
+        {
+            creatPionColm(x+xt*SHIFT,y+yt*SHIFT,1,QString("PLAYER1"),QString("ROOK"),6);
         }else
         {
-            creatPionColm(x+xt*SHIFT,y+yt*SHIFT,1,QString("NOONE"),QString("NON"),0);
+            creatPionColm(x+xt*SHIFT,y+yt*SHIFT,1,QString("NOONE"),QString("NON"),9);
         }
         i++;
         xt++;
@@ -96,93 +102,32 @@ void Shogi::board::placePionen(int x, int y/*, int cols, int rows*/)
 
 void Shogi::board::replacePionen(int x, int y)
 {
-    int i = 0;
-    double xt=-4.5;
-    int yt=0;
 
     int xp=0;
     int yp=0;
     int pp=0;
-    int c=1;
 
-    while(c)
+    for(int i=0;i<161;i++)
     {
         xp = Pionen[i]->x();
-        yp = Pionen[i]->x();
+        yp = Pionen[i]->y();
 
-        if(xp<0)
+        if(xp<(3.2*SHIFT))
         {
-            pp=(xp/SHIFT-x+4.5)+(yp/SHIFT-y)*3;
-        }else if(xp<9*SHIFT)
+            pp=((xp-x-17)/SHIFT+0)+(((yp-y)/SHIFT)*3);
+        }else if(xp<13*SHIFT)
         {
-            pp=(xp/SHIFT-x)+(yp/SHIFT-y)*9;
+            pp=((xp-x-17)/SHIFT-4)+(((yp-y)/SHIFT)*9)+40;
         }else
         {
-            pp=(xp/SHIFT-x-10.5)+(yp/SHIFT-y-1)*3;
+            pp=((xp-x)/SHIFT-14.5)+(((yp-y)/SHIFT)*3)+119;
         }
-        if(Pionen[i]==Pionen.last())
-        {
 
-        }
+        c->bufferi[pp]=Pionen[i]->getPionID();
+
+        pp = 0;
     }
-    /*
-    while(c->bufferi[i] != 8)
-    {
-        if(i < 40)
-        {
-            if(xt>-1)
-            {
-                xt=-4.5;
-                yt++;
-            }
-        }else if(i<121)
-        {
-            if(xt>8)
-            {
-                xt=0;
-                yt++;
-            }
-        }else
-        {
-            if(xt>13)
-            {
-                xt=10.5;
-                yt++;
-            }
-        }
 
-        if(i==40)
-        {
-            yt=0;
-            xt=0;
-        }else if(i==121)
-        {
-            yt=1;
-            xt=10.5;
-        }
-
-        if(c->bufferi[i] == 0)
-        {
-            creatPionColm(x+xt*SHIFT,y+yt*SHIFT,1,QString("NOONE"),QString("GRAVE"),0);
-        }else if(c->bufferi[i] == 1)
-        {
-            creatPionColm(x+xt*SHIFT,y+yt*SHIFT,1,QString("PLAYER2"),QString("PION"),1);
-        }else if(c->bufferi[i] == 2)
-        {
-            creatPionColm(x+xt*SHIFT,y+yt*SHIFT,1,QString("PLAYER2"),QString("KING"),2);
-        }else if(c->bufferi[i] == 3)
-        {
-            creatPionColm(x+xt*SHIFT,y+yt*SHIFT,1,QString("PLAYER2"),QString("ROOK"),3);
-        }else if(c->bufferi[i] == 4)
-        {
-            creatPionColm(x+xt*SHIFT,y+yt*SHIFT,1,QString("PLAYER1"),QString("PION"),4);
-        }else
-        {
-            creatPionColm(x+xt*SHIFT,y+yt*SHIFT,1,QString("NOONE"),QString("NON"),0);
-        }
-        i++;
-        xt++;
-    }*/
 }
 
 void Shogi::board::creatPionColm(int x, int y, int numPionen, QString player, QString soort, int PionID)
