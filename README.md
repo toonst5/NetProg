@@ -9,4 +9,4 @@ Als je aant spelen bent en je hebt een zet gemaakt zal se server een bericht ver
 het bericht zal er dan zo kunnen uit zien 
 shogi>CL>10000000>[000000000000000000000000000000000000000011111111192999992933333333399999999999999999999994999944449444495999995966666666600000000000000000000000000000000000000008000000000000000000] 
 
-https://github.com/toonst5/NetProg/blob/dev/shokiS.png
+![alt text](https://github.com/toonst5/NetProg/blob/dev/shokiS.png)
