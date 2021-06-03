@@ -15,6 +15,7 @@ public:
     Players(int*, bool, int*, int);
     int* GetId(){return id;}
     void SetOpId(int* a);
+    int* GetOpId(){return opId;}
     bool GetWhite(){return white;}
 };
 }

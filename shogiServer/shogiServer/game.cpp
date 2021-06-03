@@ -137,6 +137,8 @@ void Shogi::game::newPlayer()
 
 void Shogi::game::Prog()
 {
+    int x=0;
+    int y=0;
     Convert();
     for(int i=0;i<200;i++)
         {
@@ -171,6 +173,28 @@ void Shogi::game::Prog()
             }
         }
 
+        s->send();
+
+        s->reset();
+
+        for(int i=0;i<8;i++)
+        {
+            Cid[i]=Cid[i]-48;
+        }
+
+        //als tegestanders zijn ingeschakeld
+        while(Plays[x]->GetId()[0]!=Cid[0]||Plays[x]->GetId()[1]!=Cid[1]||Plays[x]->GetId()[2]!=Cid[2]||Plays[x]->GetId()[3]!=Cid[3]||Plays[x]->GetId()[4]!=Cid[4]||Plays[x]->GetId()[5]!=Cid[5]||Plays[x]->GetId()[6]!=Cid[6]||Plays[x]->GetId()[7]!=Cid[7])
+        {
+            x++;
+        }
+        while(Plays[x]->GetId()[0]!=Plays[y]->GetId()[0]||Plays[x]->GetId()[1]!=Plays[y]->GetId()[1]||Plays[x]->GetId()[2]!=Plays[y]->GetId()[2]||Plays[x]->GetId()[3]!=Plays[y]->GetId()[3]||Plays[x]->GetId()[4]!=Plays[y]->GetId()[4]||Plays[x]->GetId()[5]!=Plays[y]->GetId()[5]||Plays[x]->GetId()[6]!=Plays[y]->GetId()[6]||Plays[x]->GetId()[7]!=Plays[y]->GetId()[7])
+        {
+            y++;
+        }
+        for(int z=0; z<8;z++)
+        {
+            s->buffer[z+16]=Cid[z];
+        }
         s->send();
 
         s->reset();

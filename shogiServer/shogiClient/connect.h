@@ -2,6 +2,7 @@
 #define CONNECT_H
 
 #include <zmq.hpp>
+#include <QList>
 
 namespace Shogi
 {
@@ -13,6 +14,9 @@ public:
     void *sub;
     void *pusher;
     char buffer [500];
+    int bufferi [200];
+    char loca [20]="shogi>S>";
+    int locaL=8;
     void make();
     void breake();
     void send();

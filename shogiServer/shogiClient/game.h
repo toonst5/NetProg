@@ -8,21 +8,19 @@ class game
 
 private:
     //void drawPanel (int x, int y, int width, int hight, QColor color, double opacity);
-    void drawGUI();
-    void createInitialCards();
 
     //QGraphicsTextItem* whosTurnText;
+
+    char loca [20]="shogi>CL>";
+
+    bool idR = false;
 
 public:
     game(/*QWidget* parent=NULL*/);
     void displayMainMenu();
-    //QGraphicsScene* scene;
 
-    //void mouseMoveEvent(QMouseEvent* event);
-    //void mousePressEvent(QMouseEvent* event);
     void nextPlayersTurn();
 
-    //QPointF originalPos;
     void start();
 
 
